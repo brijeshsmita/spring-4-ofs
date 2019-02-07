@@ -3,9 +3,12 @@ package com.mahendra.mumbaibank.dao.collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.mahendra.mumbaibank.dao.AccountDAO;
 import com.mahendra.mumbaibank.entities.Account;
 
+@Component
 public class AccountDAOCollectionImpl implements AccountDAO {
 
 	private List<Account> accounts = new LinkedList<>();
