@@ -1,0 +1,24 @@
+AccountService   --- Dependent 
+  SavingAccountManager   --Dependency
+  CurrentAccountManager  --Dependency
+
+//Constructor Injection
+AccountService(SavingAccountManager sm,
+	CurrentAccountManager cm){
+  this.sm = sm;
+  this.cm = cm;
+}
+
+setCurrentAccountManager(CurrentAccountManager m)
+{
+ 
+}
+	Inversion of Control	Do not allow dependent classes to
+				build their dependencies.
+		1. Dependency Injection:	Build all dependencies FIRST
+						and INJECT them (Constructor/Setter)
+						into Dependent Object
+		2. Dependency Lookup: 		Build all depedencies and register
+						them as discoverable service
+					let dependent object locate and use it.
+			
