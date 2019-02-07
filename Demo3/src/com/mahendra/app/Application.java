@@ -1,5 +1,7 @@
 package com.mahendra.app;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +19,12 @@ public class Application {
 	public CustomerDAO dao(){
 		return new CustomerDAO();
 	}
+	
+	@Bean(name="b3")
+	public CustomerDAO dao2(){
+		return new CustomerDAO();
+	}
+	
 	
 	@Bean(name="b2")
 	public CustomerManager man(){
