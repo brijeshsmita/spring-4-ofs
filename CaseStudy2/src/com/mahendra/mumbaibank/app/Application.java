@@ -1,5 +1,7 @@
 package com.mahendra.mumbaibank.app;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -27,11 +29,20 @@ public class Application {
 		AnnotationSessionFactoryBean bean = new AnnotationSessionFactoryBean();
 		bean.setDataSource(myDataSource());
 		bean.setPackagesToScan("com.mahendra.mumbaibank.entities");
-		bean.getHibernateProperties().setProperty("hibernate.hbm2ddl.auto", "drop-create");
+		bean.setHibernateProperties(new Properties());
+		bean.getHibernateProperties().setProperty("hibernate.hbm2ddl.auto", "create");
+		bean.getHibernateProperties().setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 		bean.getHibernateProperties().setProperty("hibernate.show_sql", "true");
 		return bean;
 	}
 	
-	
+	/**
+	 * A Utility class from Spring-ORM module
+	 * @return
+	 */
+	@Bean
+	public HibernateTemplate template(){
+		return new HibernateTemplate(hibernateSession().getObject());
+	}
 	
 }

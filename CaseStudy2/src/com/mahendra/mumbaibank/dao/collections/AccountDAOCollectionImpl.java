@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.mahendra.mumbaibank.dao.AccountDAO;
 import com.mahendra.mumbaibank.entities.Account;
 
-@Component
+//@Component
 public class AccountDAOCollectionImpl implements AccountDAO {
 	
 	private Logger log = Logger.getLogger(this.getClass().getName());

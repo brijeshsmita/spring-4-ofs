@@ -8,6 +8,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 
+import com.mahendra.mumbaibank.dao.AccountDAO;
+import com.mahendra.mumbaibank.dao.db.AccountDAOImpl;
+import com.mahendra.mumbaibank.entities.Account;
 import com.mahendra.mumbaibank.entities.Customer;
 import com.mahendra.mumbaibank.services.CustomerService;
 
@@ -15,26 +18,22 @@ public class Main {
 
 	public static void main(String[] args) {
 	ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-	CustomerService service = context.getBean(CustomerService.class);
-	Customer cust = new Customer();
-	cust.setCustomerId("1234");
-	cust.setDateOfBirth(buildDate());
-	cust.setFullname("Ajay Deol");
-	service.save(cust);
+	AccountDAO dao = context.getBean(AccountDAOImpl.class);
+	Account acc = new Account();
+	acc.setAccountNo("12345");
+	acc.setAccType("Savings");
+	acc.setBalance(12000);
+	acc.setDateOpening(buildDate());
+	dao.save(acc);		
 	
-	Customer c = service.findById("1234");
-	System.out.println(c.getFullname());
-	
-	System.out.println("Context gave me instance of : "+service.getClass());
-	
-	AnnotationSessionFactoryBean factory = context.getBean(AnnotationSessionFactoryBean.class);
-	
+	Account acc2 = dao.findById("12345");
+	System.out.println(acc2.getAccType()+" "+acc2.getBalance());
 	
 	}
 
 	private static Date buildDate(){
 		Calendar c = Calendar.getInstance();
-		c.set(1984, 1, 1);
+		c.set(2010, 1, 1);
 		return c.getTime();
 	}
 }
