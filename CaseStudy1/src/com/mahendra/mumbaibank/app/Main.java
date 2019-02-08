@@ -23,6 +23,8 @@ public class Main {
 	Customer c = service.findById("1234");
 	System.out.println(c.getFullname());
 	
+	System.out.println("Context gave me instance of : "+service.getClass());
+	
 	}
 
 	private static Date buildDate(){

@@ -21,6 +21,8 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer findById(String customerId) {
 		// TODO Auto-generated method stub
+		System.out.println("CustomerService FINDBYID");
+
 		return dao.findById(customerId);
 	}
 
