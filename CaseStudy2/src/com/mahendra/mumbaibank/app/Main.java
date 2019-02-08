@@ -12,21 +12,22 @@ import com.mahendra.mumbaibank.dao.AccountDAO;
 import com.mahendra.mumbaibank.dao.db.AccountDAOImpl;
 import com.mahendra.mumbaibank.entities.Account;
 import com.mahendra.mumbaibank.entities.Customer;
+import com.mahendra.mumbaibank.services.AccountService;
 import com.mahendra.mumbaibank.services.CustomerService;
 
 public class Main {
 
 	public static void main(String[] args) {
 	ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-	AccountDAO dao = context.getBean(AccountDAOImpl.class);
+	AccountService service = context.getBean(AccountService.class);
 	Account acc = new Account();
 	acc.setAccountNo("12345");
 	acc.setAccType("Savings");
 	acc.setBalance(12000);
 	acc.setDateOpening(buildDate());
-	dao.save(acc);		
+	service.save(acc);		
 	
-	Account acc2 = dao.findById("12345");
+	Account acc2 = service.findById("12345");
 	System.out.println(acc2.getAccType()+" "+acc2.getBalance());
 	
 	}

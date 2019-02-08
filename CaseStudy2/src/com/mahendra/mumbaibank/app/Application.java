@@ -3,6 +3,7 @@ package com.mahendra.mumbaibank.app;
 import java.util.Properties;
 
 import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,9 +12,12 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate3.HibernateTransactionManager;
 import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@EnableTransactionManagement //Enable Declarative Transaction support
 @ComponentScan("com.mahendra.mumbaibank")
 @EnableAspectJAutoProxy /// XML : <aop:aspectj-autoproxy/>
 public class Application {
@@ -45,4 +49,9 @@ public class Application {
 		return new HibernateTemplate(hibernateSession().getObject());
 	}
 	
+	@Bean 
+	public HibernateTransactionManager tx(){
+		HibernateTransactionManager tx = new HibernateTransactionManager(hibernateSession().getObject());
+		return tx;
+	}
 }

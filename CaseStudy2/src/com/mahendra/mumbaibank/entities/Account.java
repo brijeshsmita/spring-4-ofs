@@ -13,7 +13,6 @@ public class Account {
 	@Column(name="acc_type",length=10)
 	private String accType;
 	
-	
 	private double balance;
 	
 	@Column(name="opening_date")
